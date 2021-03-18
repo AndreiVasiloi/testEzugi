@@ -1,0 +1,64 @@
+@import "variables";
+
+.list {
+  grid-column: center-start / center-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 3rem;
+  padding: 5rem 0;
+
+  &__item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 2px solid $color-primary;
+    padding: 1rem;
+    row-gap: 2rem;
+
+    &-video {
+      width: 100%;
+      grid-row: 1 / 2;
+      grid-column: 1 / -1;
+      align-self: center;
+    }
+
+    &-title {
+      grid-column: 1 / -1;
+      justify-self: center;
+      color: $color-primary;
+
+      @media only screen and (min-width: $bp-mobile-s) {
+        font-size: 1.5rem;
+      }
+      @media only screen and (min-width: $bp-laptop) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__header {
+    grid-column: 1/-1;
+    justify-self: center;
+    font-size: 4rem;
+    color: $color-primary;
+  }
+}
+
+.icons {
+  grid-column: 1/-1;
+  justify-self: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icon {
+  font-size: 3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  color: $color-primary;
+}

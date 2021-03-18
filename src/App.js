@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "../src/css/_base.scss";
+import List from "./features/list/List";
+import { videosTitles } from "../src/features/videosList/videosList";
+import { useState } from "react";
+import NavBar from "./features/navBar/NavBar";
+import Header from "./features/home/Home";
 
 function App() {
+  const [text, setText] = useState("");
+  const textLowered = text.trim().toLowerCase();
+  const filteredVideos =
+    text === ""
+      ? videosTitles
+      : videosTitles.filter((video) => handleFilter(video, textLowered));
+
+  function handleFilter(video, text) {
+    return video.title.toLowerCase().includes(text);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar setText={setText} />
+      <Header />
+      <List videos={filteredVideos} />
     </div>
   );
 }
